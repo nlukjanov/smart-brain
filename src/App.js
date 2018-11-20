@@ -176,7 +176,7 @@ class App extends Component {
     const { isSignedIn, imageUrl, route, boxes, isProfileOpen, user } = this.state;
     return (
       <div className="App">
-         <Particles className='particles'
+        <Particles className='particles'
           params={particlesOptions}
         />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} toggleModal={this.toggleModal} />
@@ -189,7 +189,6 @@ class App extends Component {
               user={user}
               loadUser={this.loadUser}
                />
-              }
           </Modal>
         }
         { route === 'home'
