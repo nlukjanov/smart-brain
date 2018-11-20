@@ -34,6 +34,8 @@ const initialState = {
     id: '',
     name: '',
     email: '',
+    age: '',
+    pet: '',
     entries: 0,
     joined: ''
   }

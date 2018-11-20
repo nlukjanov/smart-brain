@@ -11,6 +11,22 @@ class Profile extends React.Component {
     }
   }
 
+  onProfileUpdate = (data) => {
+    fetch(`http://localhost:3000/profile/${this.props.user.id}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': window.sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({ formInput: data })
+    }).then(resp => {
+      if (resp.status === 200 || resp.status === 304) {
+        this.props.toggleModal();
+        this.props.loadUser({ ...this.props.user, ...data});
+      }
+    }).catch(console.log)
+  }
+
   onFormChange = (event) => {
     switch(event.target.name) {
       case 'user-name':
@@ -25,23 +41,6 @@ class Profile extends React.Component {
       default:
         return;
     }
-  }
-
-  onProfileUpdate = (data) => {
-    fetch(`http://localhost:3000/profile/${this.props.user.id}`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': window.sessionStorage.getItem('token')
-      },
-      body: JSON.stringify({ formInput: data })
-    }).then(resp => {
-      if (resp.status === 200 || resp.status === 304) {
-        this.props.toggleModal();
-        this.props.loadUser({ ...this.props.user, ...data});
-        console.log(this.props.user);
-      }
-    }).catch(console.log)
   }
 
   render() {
