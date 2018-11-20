@@ -35,10 +35,11 @@ class Profile extends React.Component {
         'Authorization': window.sessionStorage.getItem('token')
       },
       body: JSON.stringify({ formInput: data })
-    }).then(resp =>  {
+    }).then(resp => {
       if (resp.status === 200 || resp.status === 304) {
         this.props.toggleModal();
         this.props.loadUser({ ...this.props.user, ...data});
+        console.log(this.props.user);
       }
     }).catch(console.log)
   }
